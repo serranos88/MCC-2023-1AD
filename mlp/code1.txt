@@ -1,0 +1,12 @@
+Programa Nombre {
+    void Inicio {
+        imprime ("Iniciando ejecucion")
+        entero base
+        entero altura
+        real area
+        leer base
+        leer altura
+        area = base * altura / 2
+        imprime ("El area es", area)
+    }
+}

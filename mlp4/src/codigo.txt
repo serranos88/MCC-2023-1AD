@@ -1,0 +1,16 @@
+Entero a
+Entero b
+Entero c
+Cadena miecuacion
+Real x
+Real y
+Leer miecuacion
+Leer a
+Leer b
+Leer c
+Imprime ('Calculando la ecuacion ',miecuacion)
+x = ( ( -1 * b ) - ( ( ( b ^ 2 ) - ( 4 * a * c ) ) ^ ( 1 / 2 ) ) ) / ( 2 * a )
+Imprime ('x es: ',x)
+Imprime ('Calculando y apartir de valores artimeticos')
+y =  ( -1 + 2 ) * ( ( 2 + 2 * 2 / 2 ) ) / 4
+Imprime ('Y es igual a: ',y)

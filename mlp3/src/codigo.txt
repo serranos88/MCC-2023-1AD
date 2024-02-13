@@ -1,0 +1,34 @@
+Entero base
+Entero altura
+Real area
+Entero m
+Entero m2
+ImprimeS ('Escribe el valor de base: ')
+Leer base
+ImprimeS ('Escribe el valor de altura: ')
+Leer altura
+area = ( base + 2 ) * altura / 2
+m = 2 + 3 * 6 / 2
+m2 = 2 + ( 6 * 4 ) / 2
+ImprimeS ('El area es: ',area)
+ImprimeS ('El resultado de 2 * 3 + 6 / 2, es: ',m)
+ImprimeS ('El resultado de m2 es : ',m2)
+Real a
+Real b
+Real c
+Real x1
+Real x2
+
+Leer a
+Leer b
+Leer c
+
+x1 = ( -1 + 2 ) * ( ( 2 + 2 * 2 / 2 ) ) / 4
+x2 = ( ( -1 * b ) - ( ( ( b ^ 2 ) - ( 4 * a * c ) ) ^ ( 1 / 2 ) ) ) / ( 2 * a )
+
+
+ImprimeS ('El valor del x1 es: ',x1)
+ImprimeS ('El valor del x2 es: ',x2)
+
+
+

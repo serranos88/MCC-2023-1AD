@@ -1,0 +1,99 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
+class Variable {
+    private final String identificador;
+    private final String tipo;
+    private double valor;
+
+    public Variable(String identificador, String tipo, double valor) {
+        this.identificador = identificador;
+        this.tipo = tipo;
+        this.valor = valor;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+}
+
+public class EvaluadorAlgebraico {
+
+    private static final Map<String, Variable> variables = new HashMap<>();
+
+    public static double evaluarExpresion(String[] tokens) {
+        Stack<Double> numeros = new Stack<>();
+        Stack<Character> operadores = new Stack<>();
+
+        for (String token : tokens) {
+            if (esNumero(token)) {
+                numeros.push(Double.parseDouble(token));
+            } else if (esOperador(token)) {
+                char operador = token.charAt(0);
+                while (!operadores.isEmpty() && precedencia(operador) <= precedencia(operadores.peek())) {
+                    double resultado = aplicarOperador(numeros.pop(), numeros.pop(), operadores.pop());
+                    numeros.push(resultado);
+                }
+                operadores.push(operador);
+            } else {
+                // Si el token no es un número ni un operador, es una variable
+                if (variables.containsKey(token)) {
+                    numeros.push(variables.get(token).getValor());
+                } else {
+                    throw new IllegalArgumentException("La variable '" + token + "' no tiene un valor asignado.");
+                }
+            }
+        }
+
+        while (!operadores.isEmpty()) {
+            double resultado = aplicarOperador(numeros.pop(), numeros.pop(), operadores.pop());
+            numeros.push(resultado);
+        }
+
+        return numeros.pop();
+    }
+
+    private static boolean esNumero(String token) {
+        try {
+            Double.parseDouble(token);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private static boolean esOperador(String token) {
+        return token.length() == 1 && "+-*/^".contains(token);
+    }
+
+    // Resto de los métodos sigue siendo igual...
+
+    public static void asignarValorVariable(String identificador, double valor) {
+        if (variables.containsKey(identificador)) {
+            variables.get(identificador).setValor(valor);
+        } else {
+            throw new IllegalArgumentException("La variable '" + identificador + "' no ha sido definida.");
+        }
+    }
+
+    public static void definirVariable(Variable variable) {
+        variables.put(variable.getIdentificador(), variable);
+    }
+
+    
+}
+
+
