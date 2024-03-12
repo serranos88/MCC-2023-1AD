@@ -1,0 +1,6 @@
+C:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/CMakeFiles/_dlib_pybind11.dir
+C:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/CMakeFiles/ALL_BUILD.dir
+C:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/CMakeFiles/ZERO_CHECK.dir
+C:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/pybind11_build/CMakeFiles/ALL_BUILD.dir
+C:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/dlib_build/CMakeFiles/dlib.dir
+C:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/dlib_build/CMakeFiles/ALL_BUILD.dir

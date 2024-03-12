@@ -1,0 +1,10 @@
+^C:\LIBRERIAS\DLIB-19.24\BUILD\TEMP.WIN-AMD64-CPYTHON-39\RELEASE\DLIB_BUILD\SSE4_TEST_BUILD\CMAKEFILES\2D5AB3F67BA746C3E92FAA8022527114\GENERATE.STAMP.RULE
+setlocal
+C:\Users\josek\AppData\Local\Programs\Python\Python39\Lib\site-packages\cmake\data\bin\cmake.exe -SC:/Librerias/dlib-19.24/dlib/cmake_utils/test_for_sse4 -BC:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/dlib_build/sse4_test_build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Librerias/dlib-19.24/build/temp.win-amd64-cpython-39/Release/dlib_build/sse4_test_build/sse4_test.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

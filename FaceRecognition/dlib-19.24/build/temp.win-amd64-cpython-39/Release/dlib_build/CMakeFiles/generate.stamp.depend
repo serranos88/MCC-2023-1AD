@@ -1,0 +1,27 @@
+# CMake generation dependency list for this directory.
+C:/Librerias/dlib-19.24/dlib/CMakeLists.txt
+C:/Librerias/dlib-19.24/dlib/cmake_utils/check_if_avx_instructions_executable_on_host.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/check_if_neon_available.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/check_if_sse4_instructions_executable_on_host.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/find_blas.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/find_libjpeg.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/find_libpng.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/find_libwebp.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/release_build_by_default
+C:/Librerias/dlib-19.24/dlib/cmake_utils/set_compiler_specific_options.cmake
+C:/Librerias/dlib-19.24/dlib/cmake_utils/use_cpp_11.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/CheckCSourceCompiles.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/CheckFunctionExists.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/CheckIncludeFile.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/CheckIncludeFileCXX.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/CheckLibraryExists.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/CheckTypeSize.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/FindBLAS.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/FindCUDA.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/FindCUDA/select_compute_arch.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/FindGIF.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/FindPackageMessage.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/FindThreads.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/GNUInstallDirs.cmake
+C:/Users/josek/AppData/Local/Programs/Python/Python39/Lib/site-packages/cmake/data/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake
