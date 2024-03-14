@@ -19,6 +19,9 @@ public class App {
     JLabel densityL;
     JLabel checkL;
     JLabel lengthL;
+    JLabel metaL;
+    JLabel inicio1L;
+    JLabel inicio2L;
     JTextField inicio1XInput;
     JTextField inicio1YInput;
     JTextField inicio2XInput;
@@ -81,6 +84,10 @@ public class App {
                 inicio1YInput = new JTextField("0");
                 inicio1YInput.setBounds(110, space, 50, 25);
                 frameInput.add(inicio1YInput);
+
+                inicio1L = new JLabel("Inicio");
+                inicio1L.setBounds(5, space, 120, 25);
+                frameInput.add(inicio1L);
                 
 
                 space += buff;
@@ -101,6 +108,27 @@ public class App {
                 inicio2YInput = new JTextField((cells-1) + "");
                 inicio2YInput.setBounds(110, space, 50, 25);
                 frameInput.add(inicio2YInput);
+
+                inicio1L = new JLabel("Inicio");
+                inicio1L.setBounds(5, space, 120, 25);
+                frameInput.add(inicio1L);
+
+                space += buff;
+
+                metaL = new JLabel("Meta");
+                metaL.setBounds(40, space, 120, 25);
+                frameInput.add(metaL);
+
+
+                space += buff;
+
+                metaXInput = new JTextField("0");
+                metaXInput.setBounds(40, space, 50, 25);
+                frameInput.add(metaXInput);
+
+                metaYInput = new JTextField("0");
+                metaYInput.setBounds(110, space, 50, 25);
+                frameInput.add(metaYInput);
                 
                 
 
@@ -174,49 +202,9 @@ public class App {
                 lengthL.setBounds(40, space, 120, 25);
                 frameInput.add(lengthL);
 
-               
-          
-                
-                // cellsL = new JLabel(cells + "x" + cells);
-
-                // size = new JSlider(1, 5, 2);
-                // sizeL = new JLabel("Tamano:");
-                // //speed = new JSlider(0, 500, this.delay);
-                
-
-                // size.setMajorTickSpacing(10);
-                // size.setBounds(40, space, 120, 25);
-                // sizeL.setBounds(15, space, 120, 25);
-                // cellsL.setBounds(160, space, 40, 25);
-                // frameInput.add(size);
-                // frameInput.add(sizeL);
-                // frameInput.add(cellsL);
                 
                 space += buff;
 
-                // obstacles = new JSlider(1, 100, 50);
-                // obstaclesL = new JLabel("Obstaculos:");
-                // densityL = new JLabel(obstacles.getValue() + "%");
-                // obstacles.setMajorTickSpacing(10);
-                // obstacles.setBounds(40, space, 120, 25);
-                // obstaclesL.setBounds(15, space, 120, 25);
-                // densityL.setBounds(160, space, 100, 25);
-                // frameInput.add(obstacles);
-                // frameInput.add(obstaclesL);
-                // frameInput.add(densityL);
-
-                // space += buff;
-
-                // checkL = new JLabel("Visitados: " + checks);
-                // checkL.setBounds(40, space, 120, 25);
-                // frameInput.add(checkL);
-
-
-                // space += buff;
-
-                // lengthL = new JLabel("Longitud de ruta: " + length);
-                // lengthL.setBounds(40, space, 120, 25);
-                // frameInput.add(lengthL);
 
                 //--------------------------------------------------------------------------
                 // EVENTO CAMBIO DE TAMAÑO
@@ -265,6 +253,8 @@ public class App {
                                 case 4:
                                     raton1Algoritmo = Algoritmo.AESTRELLA;
                                     break;
+
+                                
                             }
                         }
                     }
@@ -276,15 +266,28 @@ public class App {
                             ratonActivo2 = false;
                         } else {
                             ratonActivo2 = true;
+                            switch(algoritmosBx2.getSelectedIndex()){
+                                case 1:
+                                    raton2Algoritmo = Algoritmo.BFS;
+                                    break;
+                                case 2:
+                                    raton2Algoritmo = Algoritmo.DFS;
+                                    break;
+                                case 3:
+                                    raton2Algoritmo = Algoritmo.VORAZ;
+                                    break;
+                                case 4:
+                                    raton2Algoritmo = Algoritmo.AESTRELLA;
+                                    break;
                         }
                     }
-                });
+                }});
 
                 //--------------------------------------------------------------------------
                 // EVENTO GENERAR LABERINTO
                 //-----------------------------------------------------------------
                 generarmapB.addActionListener((e) -> {
-                    GrafoMatriz grafoMatriz = new GrafoMatriz (20 ,20, 20);
+                    GrafoMatriz grafoMatriz = new GrafoMatriz (cells ,cells, obstaculos);
                     Graficos mapView1 = new Graficos(grafoMatriz);
                 JFrame frame1 = new JFrame();
                 frame1.setTitle("Raton laberinto");
@@ -301,7 +304,32 @@ public class App {
                 //--------------------------------------------------------------------------
                 // EVENTO BUSCAR
                 //-----------------------------------------------------------------
-                searchB.addItemListener(null);
+                searchB.addActionListener((e) -> {
+                    if (ratonActivo1) {
+                        raton1 = new Thread(() -> {
+                            
+                        });
+                        
+                    }
+                    if (ratonActivo2) {
+                        raton2 = new Thread(() -> {
+                            GrafoMatriz grafoMatriz = new GrafoMatriz (20 ,20, 20);
+                            Leer leer = new Leer();
+                            String inicio = "";
+                            String[] metasplit;
+                            String meta = "";
+                            if (ratonActivo2) {
+                                inicio = inicio2XInput.getText() + "," + inicio2YInput.getText();
+                                metasplit = metaXInput.getText().split(",");
+                                meta = metasplit[0] + "," + metasplit[1];
+                                //leer.buscarRuta(grafoMatriz, inicio, meta, raton2Algoritmo);
+                            }
+                        });
+
+                        raton1.start();
+                        raton2.start();
+                    }
+                });
 
 
             Thread GUI = new Thread(() -> {
