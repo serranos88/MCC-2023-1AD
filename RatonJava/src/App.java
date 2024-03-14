@@ -11,6 +11,8 @@ public class App {
     int checks = 0;
     int length = 0;
     int obstaculos = 20;
+    GrafoMatriz grafoMatriz;
+    Graficos mapView1;
     JSlider size;
     JSlider obstacles;
     JLabel sizeL;
@@ -287,8 +289,9 @@ public class App {
                 // EVENTO GENERAR LABERINTO
                 //-----------------------------------------------------------------
                 generarmapB.addActionListener((e) -> {
-                    GrafoMatriz grafoMatriz = new GrafoMatriz (cells ,cells, obstaculos);
-                    Graficos mapView1 = new Graficos(grafoMatriz);
+                    //GrafoMatriz grafoMatriz = new GrafoMatriz (cells ,cells, obstaculos);
+                    grafoMatriz = new GrafoMatriz (cells ,cells, obstaculos);
+                    mapView1 = new Graficos(grafoMatriz);
                 JFrame frame1 = new JFrame();
                 frame1.setTitle("Raton laberinto");
                 frame1.getContentPane().add(mapView1);
@@ -307,23 +310,47 @@ public class App {
                 searchB.addActionListener((e) -> {
                     if (ratonActivo1) {
                         raton1 = new Thread(() -> {
-                            
+                            switch (raton1Algoritmo) {
+                                case DESACTIVADO:
+                                    break;
+                                case BFS:
+                                    BFS ratonB = new BFS( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ),
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
+                                    grafoMatriz,
+                                    mapView1);
+                                    ratonB.execute();
+                                    break;
+                                case DFS:
+                                    DFS ratonD = new DFS( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ),
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
+                                    grafoMatriz,
+                                    mapView1);
+                                    ratonD.execute();
+                                    break;
+                                case VORAZ:
+                                    Greedy ratonV = new Greedy( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ),
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
+                                    grafoMatriz,
+                                    mapView1);
+                                    ratonV.execute();
+                                    break;
+                                case AESTRELLA:
+                                    AEstrella ratonA = new AEstrella( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ), 
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ), 
+                                    grafoMatriz, 
+                                    mapView1);
+
+                                    ratonA.execute();
+                                    //new AEstrella(grafoMatriz.getNodo(Integer.parseInt(inicio1.split(",")[0]), Integer.parseInt(inicio1.split(",")[1])),
+                                    //grafoMatriz.getNodo(metaX, metaY, grafoMatriz, mapView1));
+                                    break;
+                            }
                         });
                         
                     }
                     if (ratonActivo2) {
                         raton2 = new Thread(() -> {
-                            GrafoMatriz grafoMatriz = new GrafoMatriz (20 ,20, 20);
-                            Leer leer = new Leer();
-                            String inicio = "";
-                            String[] metasplit;
-                            String meta = "";
-                            if (ratonActivo2) {
-                                inicio = inicio2XInput.getText() + "," + inicio2YInput.getText();
-                                metasplit = metaXInput.getText().split(",");
-                                meta = metasplit[0] + "," + metasplit[1];
-                                //leer.buscarRuta(grafoMatriz, inicio, meta, raton2Algoritmo);
-                            }
+                            
                         });
 
                         raton1.start();

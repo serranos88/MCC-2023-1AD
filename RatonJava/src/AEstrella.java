@@ -76,6 +76,7 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
             evaluate(OS);
             append(F,OS);
             sort(F);
+            
             aEstrella(F);
             
             
