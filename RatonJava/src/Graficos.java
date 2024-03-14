@@ -113,7 +113,7 @@ public class Graficos extends JPanel {
                 g.drawRect(rx, ry, tileSizeX, tileSizeY);
 
                 g.setColor(Color.BLACK);
-                g.drawString("(" + x + "," + y + ")", rx + 5, ry + 15);
+                //g.drawString("(" + x + "," + y + ")", rx + 5, ry + 15);
             }
         }
     }
