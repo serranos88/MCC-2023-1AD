@@ -4,9 +4,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class App {
+    enum Algoritmo {
+        DESACTIVADO, BFS, DFS, VORAZ, AESTRELLA
+    }
     int cells = 20;
     int checks = 0;
     int length = 0;
+    int obstaculos = 20;
     JSlider size;
     JSlider obstacles;
     JLabel sizeL;
@@ -15,6 +19,25 @@ public class App {
     JLabel densityL;
     JLabel checkL;
     JLabel lengthL;
+    JTextField inicio1XInput;
+    JTextField inicio1YInput;
+    JTextField inicio2XInput;
+    JTextField inicio2YInput;
+    JTextField metaXInput;
+    JTextField metaYInput;
+    Thread raton1;
+    Thread raton2;
+    boolean ratonActivo1 = false;
+    boolean ratonActivo2 = false;
+    Algoritmo raton1Algoritmo = Algoritmo.DESACTIVADO;
+    Algoritmo raton2Algoritmo = Algoritmo.DESACTIVADO;
+    int raton1inicioX = 0;
+    int raton1inicioY = 0;
+    int raton2inicioX = cells-1;
+    int raton2inicioY = cells-1;
+    int metaX = 0;
+    int metaY = 0;
+
     public static void main(String[] args) throws Exception {
         new App();
     }
@@ -46,9 +69,18 @@ public class App {
                 space += buffL;
 
                 String[] algoritmosLabels = { "Desactivado","BFS", "DFS", "Voraz", "A*"};
-                JComboBox<String> algoritmosBx = new JComboBox<>(algoritmosLabels);
-                algoritmosBx.setBounds(40, space, 120, 25);
-                frameInput.add(algoritmosBx);
+                JComboBox<String> algoritmosBx1 = new JComboBox<>(algoritmosLabels);
+                algoritmosBx1.setBounds(40, space, 120, 25);
+                frameInput.add(algoritmosBx1);
+
+                space += buff;
+                inicio1XInput = new JTextField("0");
+                inicio1XInput.setBounds(40, space, 50, 25);
+                frameInput.add(inicio1XInput);
+
+                inicio1YInput = new JTextField("0");
+                inicio1YInput.setBounds(110, space, 50, 25);
+                frameInput.add(inicio1YInput);
                 
 
                 space += buff;
@@ -60,12 +92,23 @@ public class App {
                 JComboBox<String> algoritmosBx2 = new JComboBox<>(algoritmosLabels);
                 algoritmosBx2.setBounds(40, space, 120, 25);
                 frameInput.add(algoritmosBx2);
+                space += buff;
+
+                inicio2XInput = new JTextField((cells-1) + "");
+                inicio2XInput.setBounds(40, space, 50, 25);
+                frameInput.add(inicio2XInput);
+
+                inicio2YInput = new JTextField((cells-1) + "");
+                inicio2YInput.setBounds(110, space, 50, 25);
+                frameInput.add(inicio2YInput);
+                
                 
 
                 space += buff;
                 JButton searchB = new JButton("Buscar");
                 searchB.setBounds(40, space, 120, 25);
                 frameInput.add(searchB);
+
                 space += buff;
 
                 JButton generarmapB = new JButton("Generar Laberinto");
@@ -181,11 +224,9 @@ public class App {
                 size.addChangeListener(new ChangeListener() {
                 @Override
                 public void stateChanged(ChangeEvent e) {
-                    //int value = slider.getValue();
-                    //label.setText("Valor: " + value);
                     cellsL.setText((size.getValue() * 10) + "x" + (size.getValue() * 10));
+                    cells = size.getValue() * 10;
 
-                    //cellsL.setText("10");
                 }
                });
 
@@ -196,11 +237,48 @@ public class App {
                 @Override
                 public void stateChanged(ChangeEvent e) {
                     densityL.setText(obstacles.getValue() + "%");
+                    obstaculos = Integer.parseInt(obstacles.getValue() + "");
 
 
                     }
                 });
 
+                //--------------------------------------------------------------------------
+                // SELECCION DE ALGORITMO
+                //-----------------------------------------------------------------
+                algoritmosBx1.addItemListener((e) -> {
+                    if (e.getStateChange() == 1) {
+                        if (algoritmosBx1.getSelectedIndex() == 0) {
+                            ratonActivo1 = false;
+                        } else {
+                            ratonActivo1 = true;
+                            switch(algoritmosBx1.getSelectedIndex()){
+                                case 1:
+                                    raton1Algoritmo = Algoritmo.BFS;
+                                    break;
+                                case 2:
+                                    raton1Algoritmo = Algoritmo.DFS;
+                                    break;
+                                case 3:
+                                    raton1Algoritmo = Algoritmo.VORAZ;
+                                    break;
+                                case 4:
+                                    raton1Algoritmo = Algoritmo.AESTRELLA;
+                                    break;
+                            }
+                        }
+                    }
+                });
+
+                algoritmosBx2.addItemListener((e) -> {
+                    if (e.getStateChange() == 1) {
+                        if (algoritmosBx2.getSelectedIndex() == 0) {
+                            ratonActivo2 = false;
+                        } else {
+                            ratonActivo2 = true;
+                        }
+                    }
+                });
 
                 //--------------------------------------------------------------------------
                 // EVENTO GENERAR LABERINTO
