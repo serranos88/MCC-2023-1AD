@@ -144,8 +144,6 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
     private Stack<Nodo> expand(Nodo EA) {
         Stack<Nodo> OS = new Stack<>();
         Nodo nodoVecino = null;
-        //String posX = "";
-        //String posY = "";
         int posX = EA.getPosX();
         int posY = EA.getPosY();
         String posicionNodoVecino = "";
@@ -170,115 +168,11 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
             }
         }
 
-
-
         optimalPath.push(EA);
         return OS;
 
     }
 
-    private Stack<Nodo> expand56565(Nodo EA) {
-        Stack<Nodo> OS = new Stack<>();
-        Nodo nodoVecino = null;
-        String posX = "";
-        String posY = "";
-        String coordenadasX = "";
-        String coordenadasY = "";
-
-        int[] vX = { -1 , -1, -1,  0, 0,  1, 1, 1}; //posicion X de vecino con respecto a la celda
-        int[] vY = { -1 ,  0,  1, -1, 1, -1, 0, 1}; //posicion Y de vecino con respecto a la celda
-      
-        try{
-            nodoVecino = this.grafoInterno.getNodo(EA.getPosX() + 1 , EA.getPosY());
-            coordenadasX = nodoVecino.getPosX()+""+nodoVecino.getPosY();
-            if(!nodoVecino.getBloqueado() && !blackList.contains( coordenadasX) && nodoVecino.getEstado().equals(Nodo.Estado.NOVISITADO) ) {
-                OS.add(nodoVecino);
-                
-            }
-        }
-        catch(ArrayIndexOutOfBoundsException e){
-
-        }
-
-        try{
-            nodoVecino = this.grafoInterno.getNodo(EA.getPosX()-1, EA.getPosY());
-            coordenadasX = nodoVecino.getPosX()+""+nodoVecino.getPosY();
-            if(!nodoVecino.getBloqueado() && !blackList.contains( coordenadasX) && nodoVecino.getEstado().equals(Nodo.Estado.NOVISITADO) ) {
-                OS.add(nodoVecino);
-                
-            }
-        }
-        catch(ArrayIndexOutOfBoundsException e){
-
-        }
-
-        try{
-            nodoVecino = this.grafoInterno.getNodo(EA.getPosX(), EA.getPosY()-1);
-            coordenadasY = nodoVecino.getPosX()+""+nodoVecino.getPosY();
-            if(!nodoVecino.getBloqueado() && !blackList.contains(  coordenadasY) && nodoVecino.getEstado().equals(Nodo.Estado.NOVISITADO)){
-                OS.add(nodoVecino);
-            }
-        }
-        catch(ArrayIndexOutOfBoundsException e){
-
-        }
-
-        try{
-            nodoVecino = this.grafoInterno.getNodo(EA.getPosX(), EA.getPosY()+1);
-            coordenadasY = nodoVecino.getPosX()+""+nodoVecino.getPosY();
-            if(!nodoVecino.getBloqueado() && !blackList.contains(  coordenadasY) && nodoVecino.getEstado().equals(Nodo.Estado.NOVISITADO)){
-                OS.add(nodoVecino);
-            }
-        }
-        catch(ArrayIndexOutOfBoundsException e){
-
-        }
-
-        optimalPath.push(EA);
-        return OS;
-
-        }
-
-
-
-        
-
-    
-    
-    private Stack<Nodo> expand333(Nodo EA){
-        Stack<Nodo> OS = new Stack<Nodo>();
-        Nodo nodoVecino = null;
-        String coordenadasX = "";
-        String coordenadasY = "";
-        for(int i=-1;i<=1;i+=2){
-          
-            try{
-                nodoVecino = this.grafoInterno.getNodo(EA.getPosX()+i, EA.getPosY());
-                coordenadasX = nodoVecino.getPosX()+""+nodoVecino.getPosY();
-                if(!nodoVecino.getBloqueado() && !blackList.contains( coordenadasX) && nodoVecino.getEstado().equals(Nodo.Estado.NOVISITADO) ) {
-                    OS.add(nodoVecino);
-                    
-                }
-            }
-            catch(ArrayIndexOutOfBoundsException e){
-
-            }
-        }
-        for(int i=-1;i<=1;i+=2){
-            try{
-                nodoVecino = this.grafoInterno.getNodo(EA.getPosX(), EA.getPosY()+i);
-                coordenadasY = nodoVecino.getPosX()+""+nodoVecino.getPosY();
-                if(!nodoVecino.getBloqueado() && !blackList.contains(  coordenadasY) && nodoVecino.getEstado().equals(Nodo.Estado.NOVISITADO)){
-                    OS.add(nodoVecino);
-                }
-            }
-            catch(ArrayIndexOutOfBoundsException e){
-
-            }
-        }
-        optimalPath.push(EA);
-        return OS;
-    }
     
     
     //Calcula la distancia entre dos nodos - G
@@ -290,7 +184,7 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
 
 
     //Calcula la distancia entre dos nodos - H
-    // Formula de Manhattan para calculo de distancias ortonormales
+    // Ecuacion Manhattan para calculo de distancias ortonormales
     private double calcularH(Nodo meta, Nodo actual){
         return Math.abs(actual.getPosX()-meta.getPosX())+Math.abs(actual.getPosY()-meta.getPosY());
     }
