@@ -52,17 +52,45 @@ public class view extends JPanel  {
                 frameInput.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frameInput.setVisible(true);
 
+                /*
+                JPanel toolP;
+                toolP = new JPanel();
+                Border loweredetched;
+                loweredetched = BorderFactory.createEtchedBorder(1);
+                frameInput.add(toolP);
+                toolP.setBorder(BorderFactory.createTitledBorder(loweredetched, "Controls"));
+                toolP.setLayout((LayoutManager)null);
+                toolP.setLocation(0, 0);
+                toolP.setVisible(true);
+                */
+                
                 int space = 40;
                 int buff = 45;
-                
-                String[] algoritmosLabels = { "BFS", "DFS", "Voraz", "A*"};
+                int buffL = 25;
+                JLabel mouse1;
+                JLabel mouse2;
+
+                mouse1 = new JLabel("Raton 1");
+                mouse1.setBounds(40, space, 120, 25);
+                frameInput.add(mouse1);
+                space += buffL;
+
+                String[] algoritmosLabels = { "Desactivado","BFS", "DFS", "Voraz", "A*"};
                 JComboBox<String> algoritmosBx = new JComboBox<>(algoritmosLabels);
                 algoritmosBx.setBounds(40, space, 120, 25);
                 frameInput.add(algoritmosBx);
+                
+
                 space += buff;
+
+                mouse2 = new JLabel("Raton 2");
+                mouse2.setBounds(40, space, 120, 25);
+                frameInput.add(mouse2);
+                space += buffL;
                 JComboBox<String> algoritmosBx2 = new JComboBox<>(algoritmosLabels);
                 algoritmosBx2.setBounds(40, space, 120, 25);
                 frameInput.add(algoritmosBx2);
+                
 
                 space += buff;
                 JButton searchB = new JButton("Buscar");
@@ -70,13 +98,25 @@ public class view extends JPanel  {
                 frameInput.add(searchB);
                 space += buff;
 
+                JButton generarmapB = new JButton("Generar Laberinto");
+                generarmapB.setBounds(40, space, 120, 25);
+                frameInput.add(generarmapB);
+                
+
+                space += buff;
+
                 int cells = 20;
+                int checks = 0;
+                int length = 0;
                 JSlider size;
                 JSlider obstacles;
                 JLabel sizeL;
                 JLabel obstaclesL;
                 JLabel cellsL;
                 JLabel densityL;
+                JLabel checkL;
+                JLabel lengthL;
+                
                 
                 cellsL = new JLabel(cells + "x" + cells);
 
@@ -105,6 +145,19 @@ public class view extends JPanel  {
                 frameInput.add(obstacles);
                 frameInput.add(obstaclesL);
                 frameInput.add(densityL);
+
+                space += buff;
+
+                checkL = new JLabel("Visitados: " + checks);
+                checkL.setBounds(40, space, 120, 25);
+                frameInput.add(checkL);
+
+
+                space += buff;
+
+                lengthL = new JLabel("Longitud de ruta: " + length);
+                lengthL.setBounds(40, space, 120, 25);
+                frameInput.add(lengthL);
                 
 
 
@@ -257,4 +310,6 @@ public class view extends JPanel  {
         return grafo;
         
       }
+
+   
 }

@@ -17,7 +17,7 @@ public class Graficos extends JPanel {
         this.grafoMatriz = grafoMatriz;
         createGrid();
 
-
+        /* 
         this.loweredetched = BorderFactory.createEtchedBorder(1);
         setLayout(new BorderLayout()); // Agregar esta línea
         this.panelInput = new JPanel();
@@ -28,7 +28,7 @@ public class Graficos extends JPanel {
         this.panelInput.setBounds(10, 10, 210, 600);
         this.algoritmosBx.setBounds(40, 40, 120, 25);
         this.panelInput.add(this.algoritmosBx);
-        
+        */
 /*
         this.toolP.setLayout((LayoutManager)null);
       this.toolP.setBounds(10, 10, 210, 600);
