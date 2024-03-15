@@ -1,11 +1,10 @@
-import java.util.ArrayList;
+
 import java.util.Random;
-import java.util.Stack;
+
 
 public class GrafoMatriz {
     private int filas;
 	private int columnas;
-    private boolean bloqueado;
     private Nodo[][] matriz;
     private Random random;
 
@@ -102,66 +101,6 @@ public class GrafoMatriz {
 		return respuesta;
 	}
 
-    public String toString(boolean flag) { // regresa un string con toda la informacion del tablero
-		
-		
-		String respuesta = "";
-		respuesta += "\n";
-
-		respuesta += "[ ]";
-		for (int i = 0; i < filas; i++) {
-			respuesta += " [" + i + "]";
-		}
-		respuesta += "\n";
-		for (int i = 0; i < filas; i++) {
-			respuesta += "[" + i + "] ";
-			for (int j = 0; j < columnas; j++) {
-				respuesta += matriz[i][j].toString(flag);
-
-			}
-			respuesta += "\n";
-		}
-
-		return respuesta;
-	}
-    public String toString(boolean flag, Stack<Nodo> optimalPath) {
-        String respuesta = "";
-        respuesta += "\n";
-
-        respuesta += "[ ]";
-        for (int i = 0; i < filas; i++) {
-            respuesta += " [" + i + "]";
-        }
-        respuesta += "\n";
-        for (int i = 0; i < filas; i++) {
-            respuesta += "[" + i + "] ";
-            for (int j = 0; j < columnas; j++) {
-                Nodo current = matriz[i][j];
-                if (current.getBloqueado()) {
-                    respuesta += " ❌";
-                } else {
-                    if (flag && optimalPath.contains(current)) {
-                        respuesta += " ✅"; // Highlight optimal path
-                    } else {
-                        switch (current.getEstado().toString()) {
-                            case "NOVISITADO":
-                                respuesta += " " + current.getPosX() + "" + current.getPosY();
-                                break;
-                            case "ABIERTO":
-                                respuesta += " AB";
-                                break;
-                            case "CERRADO":
-                                respuesta += " CE";
-                                break;
-                        }
-                    }
-                }
-            }
-            respuesta += "\n";
-        }
-
-        return respuesta;
-    }
 
     public Nodo nodoInicial(){
         Nodo inicial = getNodo(0,0);

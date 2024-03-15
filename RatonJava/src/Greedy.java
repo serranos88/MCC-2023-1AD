@@ -13,6 +13,7 @@ public class Greedy extends SwingWorker<Void, Nodo>{
     private ArrayList<String> blackList;
     private Stack<Nodo> optimalPath;
     private Graficos view;
+    long startTime;
 
     public Greedy(Nodo inicio, Nodo goal, GrafoMatriz grafo, Graficos view) {
         this.inicio = inicio;
@@ -21,6 +22,8 @@ public class Greedy extends SwingWorker<Void, Nodo>{
         this.blackList = new ArrayList<String>();
         this.optimalPath = new Stack<Nodo>();
         this.view = view;
+        startTime = System.currentTimeMillis();
+
     }
 
     @Override
@@ -38,7 +41,7 @@ public class Greedy extends SwingWorker<Void, Nodo>{
     }
     public void GBFS(Stack<Nodo> F) {
         if (F.empty()) {
-            System.out.println("Solucion no encontrada");
+            System.out.println("Solucion NO encontrada");
             return;
             
         } else {
@@ -52,8 +55,10 @@ public class Greedy extends SwingWorker<Void, Nodo>{
                 e.printStackTrace();
             }
             if (goalTest(EA)) {
-                System.out.println("Goal reached!");
+                System.out.println("Llego a la META");
                 EA.setEstado(Nodo.Estado.META);
+                double tiempoFinal = (System.currentTimeMillis() - startTime) / 1000.0;
+                System.out.println("Llego a la META - Inicio:"+ this.inicio +" Meta:"+this.goal+" Tiempo: " + tiempoFinal + " segs");
                 publish();
             } else {
             publish();
@@ -78,11 +83,11 @@ public class Greedy extends SwingWorker<Void, Nodo>{
     }
     private void evaluate(Stack<Nodo> OS) {
         double distanciaAFinal,distanciaAInicio = 0;
-        ArrayList<Nodo> OSList = new ArrayList<>();
+        //ArrayList<Nodo> OSList = new ArrayList<>();
         int index = OS.size();
         for( int i = 0;i<index;i++){
             Nodo nodoVecino = OS.pop();
-            distanciaAFinal = calcularDistancias(goal, nodoVecino);
+            distanciaAFinal = calcularHeuristica(goal, nodoVecino);
             nodoVecino.setHeuristic(distanciaAFinal);
             
             nodoVecino.setF(distanciaAInicio + distanciaAFinal);
@@ -94,15 +99,13 @@ public class Greedy extends SwingWorker<Void, Nodo>{
         }
 
     }
-    public double calcularDistancias(Nodo meta, Nodo actual){
+    public double calcularHeuristica(Nodo meta, Nodo actual){
 
-        int dx = meta.getPosX() - actual.getPosX();
-        int dy = meta.getPosY() - actual.getPosY();
-
-        //return Math.sqrt(dx * dx + dy * dy);
-        //return Math.sqrt(Math.pow(actual.getPosX()-meta.getPosX(),2)+Math.pow(actual.getPosY()-meta.getPosY(),2));
-        return Math.sqrt(Math.pow(actual.getPosX()-meta.getPosX(),2)+Math.pow(actual.getPosY()-meta.getPosY(),2));
+        //Distancia euclidiana
+        return Math.sqrt(  Math.pow(actual.getPosX()-meta.getPosX(),2) + Math.pow(actual.getPosY()-meta.getPosY(),2) );
     }
+
+
     private Stack<Nodo> expand(Nodo EA){
         Stack<Nodo> OS = new Stack<Nodo>();
         Nodo nodoVecino = null;

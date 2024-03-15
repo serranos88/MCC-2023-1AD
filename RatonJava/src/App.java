@@ -12,7 +12,7 @@ public class App {
     int length = 0;
     int obstaculos = 50;
     GrafoMatriz grafoMatriz;
-    Graficos mapView1;
+    Graficos graficos;
     JSlider size;
     JSlider obstacles;
     JLabel sizeL;
@@ -144,24 +144,10 @@ public class App {
                 JButton generarmapB = new JButton("Generar Laberinto");
                 generarmapB.setBounds(40, space, 120, 25);
                 frameInput.add(generarmapB);
-                
-                
+                      
 
                 space += buff;
 
-                /*
-                int cells = 20;
-                int checks = 0;
-                int length = 0;
-                JSlider size;
-                JSlider obstacles;
-                JLabel sizeL;
-                JLabel obstaclesL;
-                JLabel cellsL;
-                JLabel densityL;
-                JLabel checkL;
-                JLabel lengthL;
-                */
                 
                 cellsL = new JLabel(cells + "x" + cells);
 
@@ -289,12 +275,12 @@ public class App {
                 // EVENTO GENERAR LABERINTO
                 //-----------------------------------------------------------------
                 generarmapB.addActionListener((e) -> {
-                    //GrafoMatriz grafoMatriz = new GrafoMatriz (cells ,cells, obstaculos);
+                    
                     grafoMatriz = new GrafoMatriz (cells ,cells, obstaculos);
-                    mapView1 = new Graficos(grafoMatriz);
+                    graficos = new Graficos(grafoMatriz);
                 JFrame frame1 = new JFrame();
                 frame1.setTitle("Raton laberinto");
-                frame1.getContentPane().add(mapView1);
+                frame1.getContentPane().add(graficos);
                 frame1.setResizable(true);
                 frame1.setSize(800, 600);
                 frame1.setLocation(210, 0);
@@ -317,28 +303,28 @@ public class App {
                                     BFS ratonB = new BFS( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ),
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
                                     grafoMatriz,
-                                    mapView1);
+                                    graficos);
                                     ratonB.execute();
                                     break;
                                 case DFS:
                                     DFS ratonD = new DFS( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ),
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
                                     grafoMatriz,
-                                    mapView1);
+                                    graficos);
                                     ratonD.execute();
                                     break;
                                 case VORAZ:
                                     Greedy ratonV = new Greedy( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ),
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
                                     grafoMatriz,
-                                    mapView1);
+                                    graficos);
                                     ratonV.execute();
                                     break;
                                 case AESTRELLA:
                                     AEstrella ratonA = new AEstrella( grafoMatriz.getNodo(Integer.parseInt(inicio1XInput.getText()) , Integer.parseInt(inicio1YInput.getText()) ), 
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ), 
                                     grafoMatriz, 
-                                    mapView1);
+                                    graficos);
 
                                     ratonA.execute();
                                  
@@ -356,28 +342,28 @@ public class App {
                                     BFS ratonB = new BFS( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ),
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
                                     grafoMatriz,
-                                    mapView1);
+                                    graficos);
                                     ratonB.execute();
                                     break;
                                 case DFS:
                                     DFS ratonD = new DFS( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ),
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
                                     grafoMatriz,
-                                    mapView1);
+                                    graficos);
                                     ratonD.execute();
                                     break;
                                 case VORAZ:
                                     Greedy ratonV = new Greedy( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ),
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
                                     grafoMatriz,
-                                    mapView1);
+                                    graficos);
                                     ratonV.execute();
                                     break;
                                 case AESTRELLA:
                                     AEstrella ratonA = new AEstrella( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ), 
                                     grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ), 
                                     grafoMatriz, 
-                                    mapView1);
+                                    graficos);
 
                                     ratonA.execute();
                                     break;
@@ -411,10 +397,10 @@ public class App {
             Thread raton1;
             Thread raton2;
            /* 
-            Graficos mapView1 = new Graficos(grafoMatriz);
+            Graficos graficos = new Graficos(grafoMatriz);
                 JFrame frame1 = new JFrame();
                 frame1.setTitle("Raton laberinto");
-                frame1.getContentPane().add(mapView1);
+                frame1.getContentPane().add(graficos);
                 frame1.setResizable(true);
                 frame1.setSize(800, 600);
                 frame1.setLocation(210, 0);

@@ -7,6 +7,7 @@ import javax.swing.SwingWorker;
 import java.util.Collections;
 
 public class DFS extends SwingWorker<Void, Nodo> {
+    long startTime;
     private Graficos view;
     private Nodo goal;
     private Nodo inicio;
@@ -15,6 +16,7 @@ public class DFS extends SwingWorker<Void, Nodo> {
     private Stack<Nodo> optimalPath;
 
     public DFS(Nodo inicio,Nodo goal, GrafoMatriz grafo, Graficos view) {
+        startTime = System.currentTimeMillis();
         this.view = view;
         this.goal = goal;
         this.grafo = grafo;
@@ -54,6 +56,8 @@ public class DFS extends SwingWorker<Void, Nodo> {
             if (goalTest(EA)) {
                 markOptimalPath(EA);
                 System.out.println("Llego a la Meta");
+                double tiempoFinal = (System.currentTimeMillis() - startTime) / 1000.0;
+                System.out.println("Llego a la META - Inicio:"+ this.inicio +" Meta:"+this.goal+" Tiempo: " + tiempoFinal + " segs");
                 publish();
             } else {
             publish();

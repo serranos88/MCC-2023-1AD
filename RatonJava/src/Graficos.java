@@ -1,17 +1,11 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Graficos extends JPanel {
     private GrafoMatriz grafoMatriz;
     private Nodo[][] grid;
-    String[] algoritmosLabels = { "BFS", "DFS", "Voraz", "A*"};
-    JComboBox<String> algoritmosBx = new JComboBox<>(algoritmosLabels);
-    JPanel panelInput;
-    Border loweredetched;
 
     public Graficos(GrafoMatriz grafoMatriz) {
         this.grafoMatriz = grafoMatriz;

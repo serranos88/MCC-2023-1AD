@@ -6,12 +6,14 @@ import javax.swing.SwingWorker;
 
 
 public class BFS extends SwingWorker<Void, Nodo> implements IAlgoritmo {
+    long startTime;
     private Graficos view;
     private Nodo goal;
     private Nodo inicio;
     private GrafoMatriz grafo;
     private ArrayList<String> blackList;
     private Stack<Nodo> optimalPath;
+   
     public BFS(Nodo inicio,Nodo goal, GrafoMatriz grafo, Graficos view) {
         this.view = view;
         this.goal = goal;
@@ -19,6 +21,7 @@ public class BFS extends SwingWorker<Void, Nodo> implements IAlgoritmo {
         this.grafo = grafo;
         this.blackList = new ArrayList<String>();
         this.optimalPath = new Stack<Nodo>();
+        startTime = System.currentTimeMillis();
     }
 
     @Override
@@ -60,7 +63,11 @@ public class BFS extends SwingWorker<Void, Nodo> implements IAlgoritmo {
            
             if (goalTest(EA)) {
                 marcarRutaOptima(EA);
-                System.out.println("Has llegado a la meta!");
+                System.out.println("Llego a la META");
+
+                double tiempoFinal = (System.currentTimeMillis() - startTime) / 1000.0;
+                System.out.println("Llego a la META - Inicio:"+ this.inicio +" Meta:"+this.goal+" Tiempo: " + tiempoFinal + " segs");
+
                 publish();
             } else {
                 publish();
@@ -128,13 +135,6 @@ public class BFS extends SwingWorker<Void, Nodo> implements IAlgoritmo {
         optimalPath.push(EA);
         return OS;
     }
-    
-
-
-   
-
-    
-
     
 
 

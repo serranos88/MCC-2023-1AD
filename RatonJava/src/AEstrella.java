@@ -9,7 +9,7 @@ import java.util.Collections;
 
 
 public class AEstrella extends SwingWorker<Void, Nodo>{
-    private Graficos view;
+    private Graficos graficos;
     private Nodo goal;
     private Nodo inicio;
     private GrafoMatriz grafo;
@@ -19,13 +19,13 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
     long startTime;
 
     
-    public AEstrella(Nodo inicio, Nodo goal, GrafoMatriz grafo, Graficos view) {
+    public AEstrella(Nodo inicio, Nodo goal, GrafoMatriz grafo, Graficos graficos) {
         this.inicio = inicio;
         this.goal = goal;
         this.grafo = grafo;
         this.blackList = new ArrayList<String>();
         this.optimalPath = new Stack<Nodo>();
-        this.view = view;
+        this.graficos = graficos;
         this.grafoInterno = new GrafoMatriz(grafo);
         startTime = System.currentTimeMillis();
        
@@ -41,8 +41,8 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
 
     @Override
     protected void process(List<Nodo> chunks) {
-        // Update GUI with the latest changes
-        view.updateGUI();
+        // Actualiza los cambios en la GUI
+        graficos.updateGUI();
     }
 
 
@@ -68,7 +68,7 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
                 EA.setEstado(Nodo.Estado.META);
                 grafo.setEstado(EA);
                 double tiempoFinal = (System.currentTimeMillis() - startTime) / 1000.0;
-                System.out.println("Goal reached! Inicio:"+ this.inicio +" Meta:"+this.goal+" Tiempo: " + tiempoFinal + " segs");
+                System.out.println("Llego a la META - Inicio:"+ this.inicio +" Meta:"+this.goal+" Tiempo: " + tiempoFinal + " segs");
                 
             } else {
             publish();
@@ -78,8 +78,6 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
             sort(F);
             
             aEstrella(F);
-            
-            
             }
         }
     }
