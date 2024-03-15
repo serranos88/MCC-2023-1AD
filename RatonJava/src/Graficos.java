@@ -66,6 +66,8 @@ public class Graficos extends JPanel {
                             break;
                         case "META":
                             g.setColor(Color.RED);
+                            
+                            
                             break;
                         case "INICIO":
                             g.setColor(Color.GREEN);

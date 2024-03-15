@@ -39,7 +39,7 @@ public class GrafoMatriz {
             }
         }
         int numBloqueados =  (bloqueado * tamano()) /100;
-        agregarBloqueos(numBloqueados);
+        agregarObstaculos(numBloqueados);
 
     }
     public int getColumnas() {
@@ -61,8 +61,8 @@ public class GrafoMatriz {
         this.matriz[nodo.getPosX()][nodo.getPosY()].setEstado(nodo.getEstado());
     }
 
-    public void agregarBloqueos(int numBloqueos){
-		if(numBloqueos == 0){
+    public void agregarObstaculos(int numObstaculos){
+		if(numObstaculos == 0){
 			return;
 		}
 		int filaRandom = random.nextInt(this.filas);
@@ -70,9 +70,9 @@ public class GrafoMatriz {
 		
 		if(!matriz[filaRandom][columnaRandom].getBloqueado()){
 			matriz[filaRandom][columnaRandom].setBloqueado(true);
-			agregarBloqueos(numBloqueos - 1);
+			agregarObstaculos(numObstaculos - 1);
 		}else{
-			agregarBloqueos(numBloqueos);
+			agregarObstaculos(numObstaculos);
 		}
 	}
     public void imprimirGrafo(){
