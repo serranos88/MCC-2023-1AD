@@ -10,7 +10,7 @@ public class App {
     int cells = 20;
     int checks = 0;
     int length = 0;
-    int obstaculos = 20;
+    int obstaculos = 50;
     GrafoMatriz grafoMatriz;
     Graficos mapView1;
     JSlider size;
@@ -341,8 +341,7 @@ public class App {
                                     mapView1);
 
                                     ratonA.execute();
-                                    //new AEstrella(grafoMatriz.getNodo(Integer.parseInt(inicio1.split(",")[0]), Integer.parseInt(inicio1.split(",")[1])),
-                                    //grafoMatriz.getNodo(metaX, metaY, grafoMatriz, mapView1));
+                                 
                                     break;
                             }
                         });
@@ -350,11 +349,54 @@ public class App {
                     }
                     if (ratonActivo2) {
                         raton2 = new Thread(() -> {
-                            
+                            switch(raton2Algoritmo){
+                                case DESACTIVADO:
+                                    break;
+                                case BFS:
+                                    BFS ratonB = new BFS( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ),
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
+                                    grafoMatriz,
+                                    mapView1);
+                                    ratonB.execute();
+                                    break;
+                                case DFS:
+                                    DFS ratonD = new DFS( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ),
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
+                                    grafoMatriz,
+                                    mapView1);
+                                    ratonD.execute();
+                                    break;
+                                case VORAZ:
+                                    Greedy ratonV = new Greedy( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ),
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ),
+                                    grafoMatriz,
+                                    mapView1);
+                                    ratonV.execute();
+                                    break;
+                                case AESTRELLA:
+                                    AEstrella ratonA = new AEstrella( grafoMatriz.getNodo(Integer.parseInt(inicio2XInput.getText()) , Integer.parseInt(inicio2YInput.getText()) ), 
+                                    grafoMatriz.getNodo(Integer.parseInt(metaXInput.getText()) , Integer.parseInt(metaYInput.getText()) ), 
+                                    grafoMatriz, 
+                                    mapView1);
+
+                                    ratonA.execute();
+                                    break;
+                            }
                         });
 
-                        raton1.start();
-                        raton2.start();
+                        //raton1.start();
+                        //raton2.start();
+                        if(ratonActivo1 && ratonActivo2){
+                                raton1.start();
+                                raton2.start();
+                            
+                        } else if(ratonActivo1 && !ratonActivo2){
+                                raton1.start();
+                            
+                        } else if(ratonActivo2 && !ratonActivo1){
+                                raton2.start();
+                            
+                        }
                     }
                 });
 
