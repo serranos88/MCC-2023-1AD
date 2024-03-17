@@ -42,6 +42,8 @@ public class App {
     int raton2inicioY = cells-1;
     int metaX = 0;
     int metaY = 0;
+    String nombreRaton1 = "Raton 1";
+    String nombreRaton2 = "Raton 2";
 
     public static void main(String[] args) throws Exception {
         new App();
@@ -390,7 +392,7 @@ public class App {
             Thread GUI = new Thread(() -> {
                 //GrafoMatriz grafoMatriz = new GrafoMatriz (filas ,columnas, porcentaje);
             
-            Leer leer = new Leer();
+            //Leer leer = new Leer();
             String inicio = "";
             String[] metasplit;
             String meta = "";

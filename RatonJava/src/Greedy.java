@@ -55,7 +55,7 @@ public class Greedy extends SwingWorker<Void, Nodo>{
                 e.printStackTrace();
             }
             if (goalTest(EA)) {
-                System.out.println("Llego a la META");
+                //System.out.println("Llego a la META");
                 EA.setEstado(Nodo.Estado.META);
                 double tiempoFinal = (System.currentTimeMillis() - startTime) / 1000.0;
                 System.out.println("Llego a la META - Inicio:"+ this.inicio +" Meta:"+this.goal+" Tiempo: " + tiempoFinal + " segs");

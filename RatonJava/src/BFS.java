@@ -63,7 +63,7 @@ public class BFS extends SwingWorker<Void, Nodo> implements IAlgoritmo {
            
             if (goalTest(EA)) {
                 marcarRutaOptima(EA);
-                System.out.println("Llego a la META");
+                //System.out.println("Llego a la META");
 
                 double tiempoFinal = (System.currentTimeMillis() - startTime) / 1000.0;
                 System.out.println("Llego a la META - Inicio:"+ this.inicio +" Meta:"+this.goal+" Tiempo: " + tiempoFinal + " segs");

@@ -17,6 +17,7 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
     private ArrayList<String> blackList;
     private Stack<Nodo> optimalPath;
     long startTime;
+    private String nombreRaton;
 
     
     public AEstrella(Nodo inicio, Nodo goal, GrafoMatriz grafo, Graficos graficos) {
@@ -28,6 +29,19 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
         this.graficos = graficos;
         this.grafoInterno = new GrafoMatriz(grafo);
         startTime = System.currentTimeMillis();
+       
+    }
+
+    public AEstrella(Nodo inicio, Nodo goal, GrafoMatriz grafo, Graficos graficos, String nombreRaton) {
+        this.inicio = inicio;
+        this.goal = goal;
+        this.grafo = grafo;
+        this.blackList = new ArrayList<String>();
+        this.optimalPath = new Stack<Nodo>();
+        this.graficos = graficos;
+        this.grafoInterno = new GrafoMatriz(grafo);
+        startTime = System.currentTimeMillis();
+        this.nombreRaton = nombreRaton;
        
     }
     
@@ -110,16 +124,15 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
 
     //Extrae la ruta directa
     // Filtra los nodos innecesarios del recorrido original
-    // 
-    private Stack<Nodo> extraerRutaDirecta(Stack<Nodo> originalPath) {
+    private Stack<Nodo> extraerRutaDirecta(Stack<Nodo> rutaOriginal) {
         Stack<Nodo> filteredPath = new Stack<>();
         
         // Agrega el Nodo meta a la ruta filtrada
-        filteredPath.push(originalPath.pop());
+        filteredPath.push(rutaOriginal.pop());
     
         // Filtra pasos innecesarios
-        while (!originalPath.isEmpty()) {
-            Nodo currentNode = originalPath.pop();
+        while (!rutaOriginal.isEmpty()) {
+            Nodo currentNode = rutaOriginal.pop();
             Nodo nextNode = filteredPath.peek();
     
             // Checa si los nodos son vecinos
@@ -128,7 +141,7 @@ public class AEstrella extends SwingWorker<Void, Nodo>{
             }
         }
     
-        // Reverse the stack to get the correct order
+        // Cambia el orden del stack
         Collections.reverse(filteredPath);
     
         return filteredPath;
