@@ -7,11 +7,11 @@ public class Sort {
 
     public Sort() {
         oracionesOrdenadas = new ArrayList<>();
-        //oracionesRotadas = CircularShifter.getOracionesRotadas();
-        oracionesRotadas = Characters.getLines();
+        oracionesRotadas = CircularShifter.getOracionesRotadas();
     }
 
     public void alfabeticamente() {
+        //oracionesOrdenadas = sort(oracionesRotadas);
         oracionesOrdenadas = new ArrayList<>(oracionesRotadas);
 
         int n = oracionesOrdenadas.size();
