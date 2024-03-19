@@ -24,7 +24,7 @@ public class InputPDF {
         public void leerPDF() {
             try (PDDocument documento = Loader.loadPDF(new File(RUTA))) {
                 int numeroPaginas = documento.getNumberOfPages();
-                System.out.println("Número de páginas: " + numeroPaginas);
+                //System.out.println("Número de páginas: " + numeroPaginas);
 
                 int paginaActual = 1;
                 Splitter splitter = new Splitter();

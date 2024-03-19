@@ -8,7 +8,8 @@ public class Sort {
     public Sort() {
         oracionesOrdenadas = new ArrayList<>();
         //oracionesRotadas = CircularShifter.getOracionesRotadas();
-        oracionesRotadas = Characters.getLines();
+        oracionesRotadas = Indexador.getPalabrasIndexadas();
+
     }
 
     public void alfabeticamente() {

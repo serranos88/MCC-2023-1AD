@@ -8,6 +8,7 @@ public class Characters {
 
     public Characters() {
         oraciones = new ArrayList<>();
+        //oraciones = Characters.getLines();
     }
 
     // Interfaz para comunicar Input con Characters
