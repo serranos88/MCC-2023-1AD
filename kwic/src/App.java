@@ -20,19 +20,8 @@ public class App {
         
         Scanner scanner = new Scanner(System.in);
         
-        
-        
-        
-
-
-        //input = new Input("C:\\Users\\josek\\Documents\\gitMCC\\MCC-2023-1AD\\kwic\\src\\palabras.txt");
-        //input = new Input("C:\\Users\\josek\\Documents\\gitMCC\\MCC-2023-1AD\\kwic\\src\\palabras2.txt");
-        //input  = new Input("C:\\Users\\josek\\Documents\\gitMCC\\MCC-2023-1AD\\kwic\\src\\palabras3.txt");
-        //input = new Input("C:\\Users\\josek\\Documents\\gitMCC\\MCC-2023-1AD\\kwic\\src\\palabras4.txt");
-        //inputPDF = new InputPDF("C:\\Users\\josek\\Documents\\gitMCC\\MCC-2023-1AD\\kwic\\src\\documento.pdf");
 
         System.out.println("Escriba el nombre del libro a indexar");
-        // leer string de consola
         System.out.println("Archivos en la carpeta:");
         rutaArchivo.listarArchivos(".pdf");
         nombreLibro = scanner.nextLine();
@@ -47,12 +36,10 @@ public class App {
 
 
         // EJEMPLO KWIC PARA INDEXAR UN LIBRO EN PDF
-        //Characters oraciones = new Characters();
-        //Libro paginas = new Libro();
+        
         inputPDF.leerPDF();
         input.leerTexto();
         
-
         //indexador = new Indexador();
         indexador.indexar();
 
@@ -61,8 +48,6 @@ public class App {
 
         output = new Output();
         output.imprimir();
-
-
 
         /* 
         // EJEMPLO KWIC CON ARCHIVO DE TEXTO
