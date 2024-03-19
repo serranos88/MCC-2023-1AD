@@ -12,20 +12,17 @@ public class Indexador {
     }
 
     
-
     public void indexar(){
         ArrayList<String> palabrasAux = new ArrayList<>();
         int numPagina=0;
       
        for (String palabra : Characters.getLines()){
                 
-                String palabraAux = palabra; //palabra.split(" | ")[0];
-                //palabraAux = palabraAux.split(" | ")[0];
-                //palabraAux.toLowerCase();
+                String palabraAux = palabra; 
 
               for (String pagina : Libro.getPaginas()){
-                //pagina.toLowerCase();
-                if (contienePalabras( palabraAux, pagina ) ) {//(pagina.contains(palabraAux)){ // Cambiar por contienePalabras()
+                
+                if (contienePalabras( palabraAux, pagina ) ) {
                      // Busca si pagina tiene numero de pagina al inicio de la cadena
                     Pattern patron = Pattern.compile("^\\d+");
                     Matcher matcher = patron.matcher(pagina);
@@ -47,6 +44,10 @@ public class Indexador {
         palabrasIndice.setChars(palabrasAux);
     }
 
+    // Metodo para verificar si una pagina contiene las palabras del indice
+    // Acepta: palabra1 -- una sola palabra
+    // Acepta: palabra1 AND palabra2 AND palabra3  --- palabras no necesariamente consecutivas
+    // Acepta: palabra1 palabra2 --- palabras consecutivas
     public static boolean contienePalabras(String palabraIndice, String pagina){
         String paginaAux = pagina.toLowerCase();
         

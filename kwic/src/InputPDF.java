@@ -23,7 +23,6 @@ public class InputPDF {
 
         public void leerPDF() {
             try (PDDocument documento = Loader.loadPDF(new File(RUTA))) {
-                int numeroPaginas = documento.getNumberOfPages();
 
                 int paginaActual = 1;
                 Splitter splitter = new Splitter();
@@ -37,14 +36,9 @@ public class InputPDF {
 
                 for(PDDocument pagina : paginasPDF){
                     
-                    //System.out.println(stripper.getText(pagina));
-                    this.paginas.setPagina(paginaActual+ "|" + stripper.getText(pagina));// stripper.getText(pagina);
-                    //System.out.println(paginaActual+ "|" + stripper.getText(pagina));
-                    //System.out.println("Pagina: " + paginaActual);
-                    paginaActual++;
-
+                    this.paginas.setPagina(paginaActual+ "|" + stripper.getText(pagina));
                     
-                    
+                    paginaActual++;   
                 }
 
             } catch (IOException e) {
