@@ -15,7 +15,7 @@ public class App {
         s1 = new Stock("MSFT", 1.00, sm);
         s2 = new Stock("GOOG", 2.00, sm);
         s3 = new Stock("AAPL", 3.00, sm);
-        s4 = new Stock("GOOG", 4.00, sm);
+        s4 = new Stock("XXXX", 4.00, sm);
 
         // Creando 3 accionistas (Trader) ---------------------------------------
 
@@ -36,23 +36,12 @@ public class App {
         sm.register(t3, s3);
         sm.register(t3, s4);
 
-        ///*  //TEST 1
-        //String logTrade1 ="t1:The latest trade is Trader:t1 buy $1.0 Stock: MSFT\n";
-        //String logTrade2 ="t2:The latest trade is Trader:t1 buy $1.0 Stock: MSFT";
-
-        //boolean condicion = (logTrade1+logTrade2).equals(sm.trade(t1,s1, "buy",1.00));
-        //*/
-
-        /* // t2 vende la acción s2 en $3.00 y se les notifica a los interesados en esa acción ------------
-        String logTrade1 ="t1:The latest trade is Trader:t2 sell $3.0 Stock: GOOG\n";
-        String logTrade2 ="t2:The latest trade is Trader:t2 sell $3.0 Stock: GOOG\n";
-        String logTrade3 ="t3:The latest trade is Trader:t2 sell $3.0 Stock: GOOG";
-
-        boolean condicion = (logTrade1+logTrade2+logTrade3).equals(sm.trade(t2,s2, "sell",3.00));
-        */
+        
         //sm.trade(t1,s1, "buy",1.00);
-        sm.trade(t2,s2, "sell",3.00);
+        //sm.trade(t2,s2, "sell",3.00);
+        //sm.trade(t3,s3, "sell",2.50);
+        sm.trade(t3,s4, "buy",5.00);
     
-        //System.out.println(condicion);
+        
     }
 }
