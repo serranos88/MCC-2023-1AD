@@ -1,9 +1,9 @@
+
 import java.util.ArrayList;
 
 public class Stock implements Subject {
     private String tipo;
     private double precio_inicial;
-    //private StockMarket mercado_acciones;
     private ArrayList<Observer> observadores;
 
 
@@ -29,9 +29,7 @@ public class Stock implements Subject {
         for (Observer observer : observadores) {
             observer.actualizar(transaccionLog);
         }
-        for (Observer observer : observadores) {
-            System.out.print(observer.getNombre());
-        }
+
 
     }
 

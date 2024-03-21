@@ -1,4 +1,5 @@
 
+
 public class Trader implements Observer {
     private String nombre;
     private StockMarket mercado_acciones;

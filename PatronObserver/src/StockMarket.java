@@ -1,46 +1,48 @@
 
+
 import java.util.HashMap;
+import java.util.ArrayList;
 
 
 public class StockMarket {
-	//ArrayList<Trader> traders;
-    HashMap<String,Stock> stocks;
+	ArrayList<Stock> stocks;
     
 
-
     public StockMarket() {
-        //traders = new ArrayList<Trader>();
-        stocks = new HashMap<String,Stock>();
+        stocks = new ArrayList<Stock>();
 
 	}
 
 	public void register(Trader t, Stock s) {
-            //stocks.get(s.getTipo()).registrarObservador(t); //agregar el trader a la lista de observadores del stock
-            
-            stocks.put(s.getTipo(),s).registrarObservador(t);
-            System.out.println("Agregando observador al stock existente " + s.getTipo() + " " + s.getObservadores().size() +" " + t.getNombre());
+            stocks.contains(s);
+            int index = stocks.indexOf(s);
+            stocks.get(index).registrarObservador(t);
             
 	}
 
 	public String trade(Trader t, Stock s, String tipo_transaccion, double precio) {
-		String log = "\n";
-        if(stocks.containsKey(s.getTipo())){
-                   
-                    String info = "The latest trade is Trader:"+t.getNombre()+ " "+tipo_transaccion+ " $" + precio +" Stock: " + s.getTipo() + "\n";
+		String log = "";
+        if (stocks.contains(s)) {
+            
+					String info = "The latest trade is Trader:"+t.getNombre()+ " "+tipo_transaccion+ " $" + precio +" Stock: " + s.getTipo() + "\n";
                     s.notificarObservadores(info); 
                     for (Observer o : s.getObservadores()) {
                         log += o.getNombre()+":"+info;
                     }
            }else{
-             System.out.println("El stock no existe");
+             System.out.print("El stock no existe");
            }
-
-            System.out.print(log);
+		   // Eliminar el salto de linea al final de log
+			if (log.length() > 0) {
+				log = log.substring(0, log.length() - 1);
+			}
+            //System.out.print(log);
 		return log;
 	}
 
     public void agregarStock(Stock s) {
-        stocks.put(s.getTipo(),s);
+       
+        stocks.add(s);
     }
     
 }
