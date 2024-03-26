@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class StockMarket {
-	ArrayList<Stock> stocks;
+	private ArrayList<Stock> stocks;
     
 
     public StockMarket() {

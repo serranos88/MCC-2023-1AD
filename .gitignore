@@ -1,0 +1,3 @@
+AffectiveComputingAI/training/*.jpeg
+AffectiveComputingAI/affective_dataset.csv
+AffectiveComputingAI/affective_dataset.pkl
